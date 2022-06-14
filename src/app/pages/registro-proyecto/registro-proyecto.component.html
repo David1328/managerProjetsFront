@@ -1,0 +1,26 @@
+<div class="container_titulo">
+    <p class="titulo">REGISTRAR PROYECTO</p>
+</div>
+<div class="registro">
+    <div class="imagen">
+        <img src="./assets/image/administrador.png" alt="">
+    </div>
+    <!--           Formulario para Historia de usuario             -->
+    <div class="formularioGeneral">
+        <form [formGroup]="formRP" class="form-inline">
+            <div class="campo_texto">
+                <mat-form-field appearance="outline" class="tamano">
+                    <mat-label>NOMBRE DEL PROYECTO</mat-label>
+                    <input matInput placeholder="e-commerce" formControlName="nombre_proyecto"
+                        class="formu">
+                </mat-form-field>
+            </div>
+            <div class="campo_texto">
+                <button mat-raised-button [disabled]="formRP.invalid" color="primary"
+                    style="float: left; margin-left: 20px; margin-top: 20px;" class="boton" type="submit">Enviar
+                    Registro
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

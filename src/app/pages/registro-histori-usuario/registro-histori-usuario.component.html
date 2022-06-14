@@ -1,0 +1,34 @@
+<div class="container_titulo">
+    <p class="titulo">REGISTRAR HISTORIA DE USUARIO</p>
+</div>
+<div class="registro">
+    <div class="imagen">
+        <img src="./assets/image/administrador.png" alt="">
+    </div>
+    <!--           Formulario para Historia de usuario             -->
+    <div class="formularioGeneral">
+        <form [formGroup]="formRH" class="form-inline">
+            <div class="campo_texto">
+                <mat-form-field appearance="outline" class="tamano">
+                    <mat-label class="textC">PROYECTO</mat-label>
+                    <mat-select formControlName="id_proyecto">
+                        <mat-option></mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="campo_texto">
+                <mat-form-field appearance="outline" class="tamano">
+                    <mat-label>HISTORIA DE USUARIO</mat-label>
+                    <input matInput placeholder="Poder tener un carrito de compras" formControlName="apellido"
+                        class="formu">
+                </mat-form-field>
+            </div>
+            <div class="campo_texto">
+                <button mat-raised-button [disabled]="formRH.invalid" color="primary"
+                    style="float: left; margin-left: 20px; margin-top: 20px;" class="boton" type="submit">Enviar
+                    Registro
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

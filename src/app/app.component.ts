@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'managerProjects';
+
+  public flagSesion: boolean = true;
+  public rol: number=0;
+  public usuario: String ="";
 }

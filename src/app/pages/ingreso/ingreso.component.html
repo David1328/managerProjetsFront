@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-title>INGRESAR</mat-card-title>
+    <mat-card-content>
+      <div class="total">
+        <form [formGroup]="formFR" class="form-inline">
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Número de documento" formControlName="documento" />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <input matInput placeholder="Clave" formControlName="clave" [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </p>
+          <button type="submit" mat-raised-button color="primary" [disabled]="formFR.invalid"
+            (click)="ingresar()">INGRESAR</button>
+  
+        </form>
+        <div style="text-align: center;">
+          <a href="recuperarClave">¿Olvidaste tu contraseña?</a>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
