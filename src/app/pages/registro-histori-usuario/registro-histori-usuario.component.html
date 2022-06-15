@@ -1,3 +1,18 @@
+<div>
+    <table mat-table [dataSource]="HistoriasTabla" matSort class="mat-elevation-z8">
+        <caption>Historias De usuario</caption>
+        <ng-container matColumnDef="Historia">
+          <th mat-header-cell *matHeaderCellDef> Historia De Usuario </th>
+          <td mat-cell *matCellDef="let element"> {{element.historia}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Proyecto">
+            <th mat-header-cell *matHeaderCellDef> Proyecto </th>
+            <td mat-cell *matCellDef="let element"> {{element.proyecto}} </td>
+          </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>
 <div class="container_titulo">
     <p class="titulo">REGISTRAR HISTORIA DE USUARIO</p>
 </div>
@@ -12,21 +27,27 @@
                 <mat-form-field appearance="outline" class="tamano">
                     <mat-label class="textC">PROYECTO</mat-label>
                     <mat-select formControlName="id_proyecto">
-                        <mat-option></mat-option>
+                        <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto.id_proyecto">{{proyecto.nombre_proyecto}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
             <div class="campo_texto">
                 <mat-form-field appearance="outline" class="tamano">
                     <mat-label>HISTORIA DE USUARIO</mat-label>
-                    <input matInput placeholder="Poder tener un carrito de compras" formControlName="apellido"
+                    <input matInput placeholder="Poder tener un carrito de compras" formControlName="historia"
                         class="formu">
                 </mat-form-field>
             </div>
             <div class="campo_texto">
-                <button mat-raised-button [disabled]="formRH.invalid" color="primary"
-                    style="float: left; margin-left: 20px; margin-top: 20px;" class="boton" type="submit">Enviar
-                    Registro
+                <mat-form-field appearance="outline" class="tamano">
+                    <mat-label>TICKET</mat-label>
+                    <input matInput placeholder="Crear interfaz" formControlName="comentario"
+                        class="formu">
+                </mat-form-field>
+            </div>
+            <div class="campo_texto">
+                <button mat-raised-button  color="primary"
+                    style="float: left; margin-left: 20px; margin-top: 20px;" class="boton" type="submit" (click)="registroHistoria()">Nueva historia
                 </button>
             </div>
         </form>

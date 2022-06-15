@@ -67,7 +67,7 @@
   
   .registro {
     width: 53%;
-    height: 80%;
+    height: 55%;
     margin: auto;
   }
   
@@ -111,4 +111,8 @@
       width: 80%;
     }
   }
-  
+  table {
+    width: 30%;
+    position: static;
+    margin: auto;
+}

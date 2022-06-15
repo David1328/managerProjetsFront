@@ -30,11 +30,10 @@ export class IngresoComponent implements OnInit {
   ingresar(){
     let user = this.formFR.value;
     this.loginService.login(user).subscribe(data =>{
-      console.log(data)
       sessionStorage.setItem(environment.TOKEN, data);
       this.loginService.paginaReactiva.next(true);
       this.openSnackBar("Ingreso correctamente");
-      //this.router.navigate(['inicio']);
+      this.router.navigate(['agregarProyecto']);
     }, err => {
       this.openSnackBar("Usuario o contraseña Incorrecta\nIntente nuevamente");
     });

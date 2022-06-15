@@ -21,4 +21,17 @@ export class LoginService {
     return this.http.post<any>(`${this.url}/PostIngresoLogin`, user);
 
   }
+  public cerrarSesion() {
+    const tk = sessionStorage.getItem(environment.TOKEN);
+    sessionStorage.removeItem(environment.TOKEN);
+    sessionStorage.clear();
+    console.log("Sesion cerrada correctamente.")
+    window.location.reload();
+  }
+
+
+  public estaLogueado(): boolean {
+    const tk = sessionStorage.getItem(environment.TOKEN);
+    return tk != null;
+  }
 }

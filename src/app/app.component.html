@@ -11,7 +11,6 @@
             <button mat-raised-button target="_blank" [matMenuTriggerFor]="menuR" >Regístrate</button>
             <mat-menu #menuR="matMenu">
                 <button mat-menu-item [routerLink]="['registroUsuario']">Usuario</button>
-                <!--(click)=""-->
             </mat-menu>
         </div>
         <div>
@@ -20,8 +19,7 @@
             </button>
         </div>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-                <!--(click)="cerrarSession()"-->
+            <button mat-menu-item (click)="cerrarSession()">
                 <mat-icon>logout</mat-icon>
                 <span>Cerrar Sesión</span>
             </button>
@@ -52,15 +50,6 @@
                 <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/agregarHistoria']">
                     <mat-icon>person_add</mat-icon>
                     <span>Agregar historia de usuario</span>
-                </button>
-                <mat-divider></mat-divider>
-            </div>
-
-            <div [hidden]="!flagSesion">
-                <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer"
-                    [routerLink]="['agregarTicket']">
-                    <mat-icon>add_task</mat-icon>
-                    <span>Agregar ticket</span>
                 </button>
                 <mat-divider></mat-divider>
             </div>

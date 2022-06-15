@@ -11,7 +11,6 @@ import {MatDialogModule } from '@angular/material/dialog';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { RegistroHistoriUsuarioComponent } from './pages/registro-histori-usuario/registro-histori-usuario.component';
 import { AdministrarTicketComponent } from './pages/administrar-ticket/administrar-ticket.component';
-import { RegistroTicketComponent } from './pages/registro-ticket/registro-ticket.component';
 import { RegistroProyectoComponent } from './pages/registro-proyecto/registro-proyecto.component';
 import { RegistroUsuarioComponent } from './pages/registro-usuario/registro-usuario.component';
 
@@ -21,7 +20,6 @@ import { RegistroUsuarioComponent } from './pages/registro-usuario/registro-usua
     IngresoComponent,
     RegistroHistoriUsuarioComponent,
     AdministrarTicketComponent,
-    RegistroTicketComponent,
     RegistroProyectoComponent,
     RegistroUsuarioComponent,
   ],

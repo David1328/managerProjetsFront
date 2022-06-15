@@ -44,15 +44,14 @@
             <div class="campo_texto">
                 <mat-form-field appearance="outline" class="tamano">
                     <mat-label>EMPRESA</mat-label>
-                    <mat-select formControlName="id_proyecto">
-                        <mat-option></mat-option>
+                    <mat-select formControlName="id_empresa">
+                        <mat-option *ngFor="let empresa of empresas" [value]="empresa.id_empresa">{{empresa.nombre_empresa}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
             <div class="campo_texto">
                 <button mat-raised-button [disabled]="formRU.invalid" color="primary"
-                    style="float: left; margin-left: 20px; margin-top: 20px;" class="boton" type="submit">Enviar Registro</button>
-                    <!--(click)="registrar($event)"-->
+                    style="float: left; margin-left: 20px; margin-top: 20px;" class="boton" type="submit" (click)="registrar()">Enviar Registro</button>
             </div>
         </form>
     </div>

@@ -13,7 +13,7 @@
     margin-top: 2em;
     margin-bottom: 2em;
     padding: 2em;
-    width: 50vw;
+    width: 45vw;
     background-color: #3f51b5;
     border-top-left-radius: 55px;
     border-bottom-right-radius: 55px;
@@ -67,8 +67,9 @@
   
   .registro {
     width: 53%;
-    height: 80%;
+    height: 45%;
     margin: auto;
+    margin-top: 2%;
   }
   
   .tamano {
@@ -112,3 +113,8 @@
     }
   }
   
+  table {
+    width: 30%;
+    position: static;
+    margin: auto;
+}

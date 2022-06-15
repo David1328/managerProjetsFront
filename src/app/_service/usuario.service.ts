@@ -15,4 +15,10 @@ export class UsuarioService {
   public postAgregarUsuarioNuevo(usuarioNuevo :Usuario){
     return this.http.post<any>(`${this.url}/PostNuevoUsuario`,usuarioNuevo);
   }
+  //Obtener informacion de usuario
+  public getInformationUser(documento :string){
+    return this.http.get<Usuario>(`${this.url}/GetInformacionUsuario/`+documento);
+  }
+
+
 }
