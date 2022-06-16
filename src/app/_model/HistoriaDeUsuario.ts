@@ -1,3 +1,4 @@
+/** CLASE HISTORIA DE USUARIO QUE ACTUA COMO POJO PARA  LA TABLA UHISTORIADEUSUARIO DEL BACK-END*/
 import { Ticket } from "./Ticket";
 
 export class HistoriaDeUsuario {

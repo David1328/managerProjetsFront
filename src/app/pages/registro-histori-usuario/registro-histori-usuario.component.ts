@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HistoriaDeUsuario } from 'src/app/_model/HistoriaDeUsuario';
 import { Proyecto } from 'src/app/_model/Proyecto';
@@ -22,8 +23,8 @@ export class RegistroHistoriUsuarioComponent implements OnInit {
   public proyectos!: Proyecto[];
   private usuario_id !: number;
   private usuario !: Usuario;
-  private nuevaHistoria !:HistoriaDeUsuario;
-  private nuevoTicket !:Ticket;
+  private nuevaHistoria = new HistoriaDeUsuario();
+  private nuevoTicket = new Ticket();
 
   public HistoriasTabla = new MatTableDataSource<HistoriaDeUsuario>();
 
@@ -33,7 +34,8 @@ export class RegistroHistoriUsuarioComponent implements OnInit {
     private snackBar: MatSnackBar,
     private usuarioService: UsuarioService,
     private proyectoService: ProyectoService,
-    private historiasDeUsuarioService:HistoriaDeUsuarioService) { }
+    private historiasDeUsuarioService:HistoriaDeUsuarioService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.datos();
@@ -46,18 +48,29 @@ export class RegistroHistoriUsuarioComponent implements OnInit {
   }
 
   public formRH = this.formBuilder.group({
-    historia: ['',[Validators.required,  Validators.maxLength(20),  Validators.minLength(3),  Validators.pattern('[a-zA-Z ]*'),]],
-    id_proyecto: ['',[Validators.required,  Validators.minLength(4), Validators.maxLength(20),  Validators.pattern('[a-zA-Z ]*'),]],
-    comentario: ['',[Validators.required,  Validators.minLength(4), Validators.maxLength(20),  Validators.pattern('[a-zA-Z ]*'),]],
+    historia: ['',[Validators.required,  Validators.maxLength(200),  Validators.minLength(3),  Validators.pattern('[a-zA-Z ]*'),]],
+    id_proyecto: ['',[Validators.required]],
+    comentario: ['',[Validators.required,  Validators.minLength(4), Validators.maxLength(200),  Validators.pattern('[a-zA-Z ]*'),]],
   });
 
   registroHistoria(){
-    this.nuevaHistoria = this.formRH.value;
-    this.nuevoTicket = this.formRH.value;
-    this.nuevoTicket.estado="Activo";
+    //para ticket con historia
+    this.nuevoTicket.Comentario = this.formRH.value.comentario;
+    this.nuevoTicket.Estado="Activo";
+    //para historia nueva
+    this.nuevaHistoria.proyecto_id = this.formRH.value.id_proyecto;
+    this.nuevaHistoria.historia = this.formRH.value.historia;
+    this.nuevaHistoria.empresa_id = this.usuario.id_empresa;
     this.nuevaHistoria.nuevosTickets = this.nuevoTicket;
-    console.log(this.nuevaHistoria)
-
+    //servicio
+    this.historiasDeUsuarioService.postNuevaHistoria(this.nuevaHistoria).subscribe(respuesta=>{
+      this.ngOnInit();
+      this.openSnackBar(respuesta);
+      this.router.navigate(['administrarTicket']);
+    },err=>{
+      console.log(err)
+      this.openSnackBar(err);
+    })
   }
 
   private openSnackBar(mensaje: string) {

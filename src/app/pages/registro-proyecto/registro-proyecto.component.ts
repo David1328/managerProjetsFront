@@ -36,7 +36,7 @@ export class RegistroProyectoComponent implements OnInit {
   }
 
   public formRP = this.formBuilder.group({
-    nombre_proyecto: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(6)]],
+    nombre_proyecto: ['', [Validators.required, Validators.maxLength(200), Validators.minLength(6)]],
   });
 
   registrarProyecto() {

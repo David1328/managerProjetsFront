@@ -1,1 +1,108 @@
-<p>administrar-ticket works!</p>
+<div>
+    <div class="filtro">
+      <mat-form-field appearance="fill">
+        <mat-label>Historias de Usuario</mat-label>
+        <mat-select (selectionChange)="applyFilterEli($event.value)">
+            <mat-option *ngFor="let historia of historias" [value]="historia.id_historia">
+                {{historia.historia}}</mat-option>
+        </mat-select>
+        
+      </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="TicketTabla" matSort class="mat-elevation-z8">
+        <caption>Historias De usuario</caption>
+        <ng-container matColumnDef="Ticket">
+            <th mat-header-cell *matHeaderCellDef> Ticket </th>
+            <td mat-cell *matCellDef="let element"> {{element.Comentario}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Estado">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let element"> {{element.Estado}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Editar">
+            <th mat-header-cell *matHeaderCellDef> Editar </th>
+            <td mat-cell *matCellDef="let element"><button mat-button (click)="editarTicket(element.Id_ticket)">
+                <mat-icon color="warn"><span class="material-icons">
+                    edit
+                    </span></mat-icon>
+              </button> </td>
+        </ng-container>
+        <ng-container matColumnDef="Cancelar">
+            <th mat-header-cell *matHeaderCellDef> Cancelar </th>
+            <td mat-cell *matCellDef="let element"><button mat-button (click)="cancelarTicket(element.Id_ticket,element.Comentario)">
+                <mat-icon color="warn"><span class="material-icons">
+                    not_interested
+                    </span></mat-icon>
+              </button> </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+<div class="container_titulo">
+    <p class="titulo">ADMINISTRAR TICKETS</p>
+</div>
+<div class="registro">
+    <!--           Formulario para Historia de usuario             -->
+    <div class="formularios">
+        <div style="width: 100%;">
+            <div class="formularioGeneral1">
+                <form [formGroup]="formTN" class="form-inline">
+                    <div class="campo_texto">
+                        <mat-form-field appearance="outline" class="tamano">
+                            <mat-label class="textC">HISTORIA</mat-label>
+                            <mat-select formControlName="id_historia">
+                                <mat-option *ngFor="let historia of historias" [value]="historia.id_historia">
+                                    {{historia.historia}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="campo_texto">
+                        <mat-form-field appearance="outline" class="tamano">
+                            <mat-label>COMENTARIO</mat-label>
+                            <input matInput placeholder="Poder tener un carrito de compras" formControlName="comentario"
+                                class="formu">
+                        </mat-form-field>
+                    </div>
+                    <div class="campo_texto">
+                        <button mat-raised-button [disabled]="formTN.invalid" color="primary"
+                            style="float: left; margin-left: 20px; margin-top: 20px;" class="boton" type="submit"
+                            (click)="registrarNuevoTicket()">NUEVO
+                            TICKET
+                        </button>
+                        <!--(click)="registroHistoria()"-->
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div style="width: 100%;">
+            <div class="formularioGeneral">
+                <form [formGroup]="formET" class="form-inline" [hidden]="tickerParaActualizar == null">
+                    <div class="campo_texto" >
+                        <mat-form-field  appearance="outline" class="tamano">
+                            <mat-label class="textC">COMENTARIO</mat-label>
+                            <input  matInput placeholder="Poder tener un carrito de compras" formControlName="comentario"
+                                class="formu">
+                        </mat-form-field>
+                    </div>
+                    <div class="campo_texto">
+                        <mat-form-field appearance="outline" class="tamano">
+                            <mat-label>ESTADO</mat-label>
+                            <mat-select formControlName="estado">
+                                <mat-option *ngFor="let estado of estados" [value]="estado.estado">
+                                    {{estado.estado}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="campo_texto">
+                        <button mat-raised-button [disabled]="formET.invalid" color="primary"
+                            style="float: left; margin-left: 20px; margin-top: 20px;" class="boton" type="submit"
+                            (click)="actualizarTicket()">ACTUALIZAR TICKET
+                        </button>
+                        <!--(click)="registroHistoria()"-->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

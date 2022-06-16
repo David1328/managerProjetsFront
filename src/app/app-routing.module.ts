@@ -9,12 +9,14 @@ import { RegistroUsuarioComponent } from './pages/registro-usuario/registro-usua
 import { GuardianService } from './_service/guardian.service';
 
 const routes: Routes = [
+  /** Se usa el canActiva para activar el guardian de que esta creado en el paquete de service */
+
   //Registro usuario
   {path: 'registroUsuario', component: RegistroUsuarioComponent},
   //agregar proyecto
-  {path: 'agregarProyecto', component: RegistroProyectoComponent},
+  {path: 'agregarProyecto', component: RegistroProyectoComponent, canActivate: [GuardianService]},
   //administrar ticket
-  {path: 'administrarTicket', component: AdministrarTicketComponent},
+  {path: 'administrarTicket', component: AdministrarTicketComponent, canActivate: [GuardianService]},
   //agregar historia de usuario
   {path: 'agregarHistoria', component: RegistroHistoriUsuarioComponent, canActivate: [GuardianService]},
   //inicio de session

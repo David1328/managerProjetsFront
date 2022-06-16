@@ -5,6 +5,13 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
+
+/**
+ * Esta clase se activa al momento de acceder a una url del proyecto
+ * y poder controllar su puede ingresar
+ * siempre y cuando en el app routing la direccion de acceso tenga el 
+ * canActive
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -16,21 +23,16 @@ export class GuardianService implements CanActivate {
     try {
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(sessionStorage.getItem(environment.TOKEN)?.toString());
-      //Apartados solo para Docentes
+      //Para acceder a agregar una historia de usuario
       if ((url.includes('/agregarHistoria')) && (decodedToken != null)) {
         return true;
       }
-      else if ((url.includes('/administrarActividad')) && (decodedToken != null)) {
+      //Para acceder administrar los tickets
+      else if ((url.includes('/administrarTicket')) && (decodedToken != null)) {
         return true;
       }
-      else if ((url.includes('/misActividades')) && (decodedToken != null)) {
-        return true;
-      }
-      //Apartados que pueden ver los docentes y los estudiantes
-      else if ((url.includes('/pecs')) && (decodedToken != null || decodedToken != null)) {
-        return true;
-      }
-      else if ((url.includes('/evaluacionInicial')) && (decodedToken != null || decodedToken != null)) {
+      //Para acceder a agregar un proyecto nuevo
+      else if ((url.includes('/agregarProyecto')) && (decodedToken != null)) {
         return true;
       }
       else {

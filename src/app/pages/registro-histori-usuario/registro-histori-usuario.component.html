@@ -46,7 +46,7 @@
                 </mat-form-field>
             </div>
             <div class="campo_texto">
-                <button mat-raised-button  color="primary"
+                <button mat-raised-button [disabled]="formRH.invalid" color="primary"
                     style="float: left; margin-left: 20px; margin-top: 20px;" class="boton" type="submit" (click)="registroHistoria()">Nueva historia
                 </button>
             </div>

@@ -1,3 +1,4 @@
+/** CLASE PROYECTO QUE ACTUA COMO POJO PARA  LA TABLA UPROYECTO DEL BACK-END*/
 export class Proyecto {
     id_proyecto !: number;
     nombre_proyecto !:string;
